@@ -60,14 +60,14 @@ func (u *UserService) GetUserByUUID(ctx context.Context, uuid string) (*dto.User
 		return nil, err
 	}
 
-	data := dto.UserResponse{
+	data := &dto.UserResponse{
 		UUID:  user.UUID,
 		Name:  user.Name,
 		Email: user.Email,
 		Phone: user.Phone,
 	}
 
-	return &data, nil
+	return data, nil
 }
 
 func (u *UserService) Login(ctx context.Context, req *dto.LoginRequest) (*dto.LoginResponse, error) {
@@ -132,6 +132,7 @@ func (u *UserService) Register(ctx context.Context, req *dto.RegisterRequest) (*
 	user, err := u.repository.GetUser().Register(ctx, &dto.RegisterRequest{
 		Name:     req.Name,
 		Email:    req.Email,
+		Phone:    req.Phone,
 		Password: string(hashedPassword),
 		RoleID:   constants.Customer,
 	})

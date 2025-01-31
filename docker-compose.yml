@@ -1,9 +1,13 @@
-name: booking-order-app # change this to your app name
+name: conext-app
 services:
-  user-service: # change this to your service name
-    container_name: user-service # change this to your service name
-    image: sikoding20/user-service # change this to your image name
+  user-service:
+    container_name: user-service
+    platform: linux/amd64
+    # image: sikoding20/user-service:17
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "8001:8001" # change this to your port
+      - "8001:8081"
     env_file:
       - .env

@@ -11,7 +11,7 @@ type UserResponse struct {
 	UUID  uuid.UUID `json:"uuid"`
 	Name  string    `json:"name"`
 	Email string    `json:"email"`
-	Role  string    `json:"role"`
+	Role  string    `json:"role,omitempty"`
 	Phone string    `json:"phone"`
 }
 
